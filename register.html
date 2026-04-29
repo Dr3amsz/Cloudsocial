@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - CloudSocial</title>
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="clouds-container">
+        <div class="cloud cloud-1">☁️</div>
+        <div class="cloud cloud-2">☁️</div>
+        <div class="cloud cloud-3">☁️</div>
+    </div>
+
+    <div class="main-container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="auth-card p-4 shadow-lg" style="max-width: 450px; width: 100%; z-index: 10;">
+            <div class="text-center mb-4">
+                <h2 class="brand-text" style="font-size: 2rem;">CloudSocial</h2>
+                <p class="text-muted">Mari buat akun barumu 🌤️</p>
+            </div>
+            
+            <form id="registerForm">
+                <div class="mb-3">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="regName" placeholder="Siapa namamu?" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="regEmail" placeholder="nama@email.com" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" id="regPassword" placeholder="Buat password yang kuat" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2 mb-3">✨ Daftar Akun</button>
+                
+                <div class="text-center">
+                    <p class="mb-0 text-muted">Sudah punya akun? 
+                        <a href="login.html" class="text-primary text-decoration-none fw-bold">Masuk</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
