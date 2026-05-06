@@ -5,39 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda - CloudSocial</title>
     <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <!-- Tambahan Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand navbar-light fixed-top shadow-sm">
-        <div class="container d-flex justify-content-between">
-            <a class="navbar-brand d-none d-md-block" href="feed.html">
+    
+    <!-- Navbar Super Lucu & Responsif -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" style="background: rgba(74, 159, 196, 0.95); backdrop-filter: blur(10px);">
+        <div class="container">
+            <!-- Logo Web -->
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center cute-hover" href="feed.html">
+                <span class="fs-2 me-2">☁️</span>
                 <span class="brand-text">CloudSocial</span>
             </a>
             
-            <ul class="navbar-nav mx-auto mx-md-0 d-flex flex-row gap-4">
-                <li class="nav-item">
-                    <a class="nav-link" href="feed.html" title="Beranda">
-                        <span style="font-size: 1.5rem;">🏠</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="openCreatePostModal()" title="Posting">
-                        <span style="font-size: 1.5rem;">➕</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.html" title="Profil">
-                        <span style="font-size: 1.5rem;">👤</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="logout()" title="Keluar">
-                        <span style="font-size: 1.5rem;">🚪</span>
-                    </a>
-                </li>
-            </ul>
+            <!-- Tombol Hamburger Lucu untuk HP (Responsif) -->
+            <button class="navbar-toggler border-0 cute-hover" type="button" data-bs-toggle="collapse" data-bs-target="#cuteNavbar" style="outline: none;">
+                <span class="fs-2">🍔</span>
+            </button>
+            
+            <!-- Menu Navigasi -->
+            <div class="collapse navbar-collapse" id="cuteNavbar">
+                <ul class="navbar-nav ms-auto align-items-center gap-3">
+                    
+                    <!-- 1. Beranda -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white cute-hover d-flex align-items-center" href="feed.html" title="Beranda">
+                            <span class="fs-4">🏠</span>
+                            <span class="d-lg-none fw-bold ms-2">Beranda</span>
+                        </a>
+                    </li>
+
+                    <!-- 2. Dropdown: Buat Postingan (Upload Foto & Text) -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white cute-hover d-flex align-items-center dropdown-toggle" href="#" id="postDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Buat Postingan">
+                            <span class="fs-4">✨</span>
+                            <span class="d-lg-none fw-bold ms-2">Buat Postingan</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" aria-labelledby="postDropdown" style="border-radius: 15px;">
+                            <li>
+                                <a class="dropdown-item fw-bold d-flex align-items-center gap-2 py-2" href="#" onclick="openCreatePostModal('text')">
+                                    <span class="fs-5">📝</span> Tulis Status
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item fw-bold d-flex align-items-center gap-2 py-2" href="#" onclick="openCreatePostModal('image')">
+                                    <span class="fs-5">📸</span> Upload Foto
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- 3. Dropdown: Profil (Upload Profil & Edit Profil) -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white cute-hover d-flex align-items-center dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Profil Saya">
+                            <span class="fs-4">🐣</span>
+                            <span class="d-lg-none fw-bold ms-2">Profil Saya</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" aria-labelledby="profileDropdown" style="border-radius: 15px;">
+                            <li>
+                                <a class="dropdown-item fw-bold d-flex align-items-center gap-2 py-2" href="profile.html">
+                                    <span class="fs-5">👀</span> Lihat Profil
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Mengarah ke profile.html lalu langsung membuka modal edit -->
+                                <a class="dropdown-item fw-bold d-flex align-items-center gap-2 py-2" href="profile.html" onclick="setTimeout(() => openEditProfileModal(), 500)">
+                                    <span class="fs-5">🎨</span> Edit Profil
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- 4. Keluar (Logout) -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white cute-hover d-flex align-items-center" href="#" onclick="logout()" title="Keluar">
+                            <span class="fs-4">🚪</span>
+                            <span class="d-lg-none fw-bold ms-2 text-danger">Keluar</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
         </div>
     </nav>
+
+    <!-- CSS Tambahan Khusus Navbar -->
+    <style>
+        .cute-hover {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .cute-hover:hover {
+            transform: translateY(-5px) scale(1.15);
+            text-shadow: 0 5px 15px rgba(255, 255, 255, 0.5);
+        }
+        
+        .dropdown-menu {
+            animation: popIn 0.3s ease-out;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+        }
+        
+        .dropdown-item {
+            transition: all 0.2s ease;
+            border-radius: 10px;
+            margin: 0 5px;
+            width: auto;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--color-1);
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        @keyframes popIn {
+            0% { transform: translateY(10px) scale(0.95); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+    </style>
 
     <div class="clouds-container">
         <div class="cloud cloud-1">☁️</div>
@@ -47,8 +135,10 @@
     </div>
 
     <div class="main-container">
-        <div id="feedPage" class="page-content active"> <div class="container py-5">
+        <div id="feedPage" class="page-content active"> 
+            <div class="container py-5">
                 <div class="row">
+                    <!-- Sidebar Profil -->
                     <div class="col-lg-3 d-none d-lg-block">
                         <div class="sidebar-card">
                             <div class="text-center mb-3">
@@ -66,6 +156,7 @@
                         </div>
                     </div>
 
+                    <!-- Area Feed -->
                     <div class="col-lg-6">
                         <div class="post-card mb-4">
                             <div class="d-flex gap-3 mb-3">
@@ -80,6 +171,7 @@
         </div>
     </div>
 
+    <!-- Modal Create Post -->
     <div class="modal fade" id="createPostModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -103,7 +195,7 @@
         </div>
     </div>
 
-    <script src="assets/bootstrap.bundle.min.js"></script>
+<!-- <script src="script.js"></script> -->
     <script src="script.js"></script>
 </body>
 </html>

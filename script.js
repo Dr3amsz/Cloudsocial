@@ -160,7 +160,10 @@ function handleRegister(e) {
 
     showNotification('Registrasi berhasil! Silakan login.', 'success');
     document.getElementById('registerForm').reset();
-    showPage('login');
+    setTimeout(() => {
+        window.location.href = 'login.php';
+    }); 
+
 }
 
 function handleLogin(e) {
@@ -176,19 +179,24 @@ function handleLogin(e) {
         setCurrentUser(user);
         showNotification('Selamat datang, ' + user.name + '! 🎉', 'success');
         document.getElementById('loginForm').reset();
-        showAuthenticatedUI();
-        loadFeed();
+        setTimeout(() => {
+            window.location.href = 'feed.php';
+        }, 1000);
     } else {
         showNotification('Email atau password salah!', 'error');
     }
 }
 
 function logout() {
-    if (confirm('Yakin ingin keluar?')) {
+    if (confirm('Yakin pengen keluar?')) {
         localStorage.removeItem(DB.currentUser);
         showNotification('Berhasil keluar. Sampai jumpa! 👋', 'success');
         showUnauthenticatedUI();
         showPage('landing');
+    
+        setTimeout(() => {
+            window.location.href = 'login.php';
+        }, 1000);
     }
 }
 

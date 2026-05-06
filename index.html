@@ -4,54 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CloudSocial - Sosial Media Anda</title>
-    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <!-- Ganti CDN Bootstrap agar lebih aman jika folder assets bermasalah -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tambahan Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNavbar">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNavbar" style="background: rgba(74, 159, 196, 0.95); backdrop-filter: blur(10px);">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <svg width="30" height="30" viewBox="0 0 30 30" class="me-2">
-                    <path d="M7 16c0-1.5 1-3 2.5-3.5C10 12 11 11 11 9.5c0-1-0.5-2-1.5-2.5 2-1 4.5-0.5 6 1C17 9.5 18 11 20 11.5c1.5 0.5 2.5 2 2.5 3.5 0 2-1.5 3.5-3.5 3.5h-9C8 18.5 7 17.5 7 16z" fill="white" opacity="0.9"/>
-                    <ellipse cx="15" cy="20" rx="8" ry="2" fill="white" opacity="0.3"/>
-                </svg>
+            <!-- Brand Logo -->
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="#" onclick="showPage('landing')">
+                <i class="bi bi-cloud-fill me-2 fs-3"></i>
                 <span class="brand-text">CloudSocial</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="bi bi-list text-white fs-2"></i>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
+                <ul class="navbar-nav ms-auto align-items-center gap-3">
+                    <!-- Menu untuk User yang sudah Login -->
                     <li class="nav-item d-none" id="navHome">
-                        <a class="nav-link" href="#" onclick="showPage('feed')">
-                            <i class="nav-icon">🏠</i> Beranda
+                        <a class="nav-link text-white text-center" href="#" onclick="showPage('feed')" title="Beranda">
+                            <i class="bi bi-house-door-fill fs-4 d-block"></i>
+                            <span class="d-lg-none">Beranda</span>
                         </a>
                     </li>
                     <li class="nav-item d-none" id="navProfile">
-                        <a class="nav-link" href="#" onclick="showPage('profile')">
-                            <i class="nav-icon">👤</i> Profil
+                        <a class="nav-link text-white text-center" href="#" onclick="showPage('profile')" title="Profil">
+                            <i class="bi bi-person-circle fs-4 d-block"></i>
+                            <span class="d-lg-none">Profil</span>
                         </a>
                     </li>
                     <li class="nav-item d-none" id="navLogout">
-                        <a class="nav-link" href="#" onclick="logout()">
-                            <i class="nav-icon">🚪</i> Keluar
+                        <a class="nav-link text-white text-center" href="#" onclick="logout()" title="Keluar">
+                            <i class="bi bi-box-arrow-right fs-4 d-block text-danger"></i>
+                            <span class="d-lg-none text-danger">Keluar</span>
                         </a>
                     </li>
+
+                    <!-- Menu untuk User yang belum Login -->
                     <li class="nav-item" id="navLogin">
-                        <a class="nav-link" href="#" onclick="showPage('login')">
-                            <i class="nav-icon">🔐</i> Masuk
-                        </a>
+                        <button class="btn btn-outline-light rounded-pill px-4 fw-bold" onclick="showPage('login')">Masuk</button>
                     </li>
                     <li class="nav-item" id="navRegister">
-                        <a class="nav-link btn-register" href="#" onclick="showPage('register')">
-                            Daftar
-                        </a>
+                        <button class="btn bg-white rounded-pill px-4 fw-bold" style="color: var(--primary);" onclick="showPage('register')">Daftar</button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- CSS khusus untuk efek hover navbar -->
+    <style>
+        .nav-link i {
+            transition: transform 0.2s ease;
+        }
+        .nav-link:hover i {
+            transform: scale(1.2);
+            color: #E8F4F8;
+        }
+    </style>
 
     <!-- Floating Clouds Background -->
     <div class="clouds-container">
@@ -68,17 +84,17 @@
                 <div class="row align-items-center min-vh-100">
                     <div class="col-lg-6 text-center text-lg-start mb-5 mb-lg-0">
                         <div class="landing-content">
-                            <h1 class="display-3 fw-bold mb-4 animate-fade-in">
+                            <h1 class="display-3 fw-bold mb-4 animate-fade-in text-dark">
                                 Selamat Datang di <span class="gradient-text">CloudSocial</span>
                             </h1>
-                            <p class="lead mb-4 animate-fade-in-delay">
+                            <p class="lead mb-4 animate-fade-in-delay text-dark">
                                 Terhubung dengan teman, berbagi momen, dan ciptakan kenangan bersama di platform sosial media modern yang dibuat untuk Anda.
                             </p>
                             <div class="d-flex gap-3 justify-content-center justify-content-lg-start animate-fade-in-delay-2">
-                                <button class="btn btn-primary btn-lg" onclick="showPage('register')">
+                                <button class="btn btn-primary btn-lg rounded-pill" onclick="showPage('register')">
                                     Mulai Sekarang ✨
                                 </button>
-                                <button class="btn btn-outline-light btn-lg" onclick="showPage('login')">
+                                <button class="btn btn-outline-dark btn-lg rounded-pill" onclick="showPage('login')">
                                     Masuk
                                 </button>
                             </div>
@@ -105,31 +121,31 @@
                     <div class="col-md-6 col-lg-5">
                         <div class="auth-card">
                             <div class="text-center mb-4">
-                                <div class="auth-icon mb-3">🔐</div>
-                                <h2 class="fw-bold">Masuk ke Akun</h2>
+                                <i class="bi bi-shield-lock-fill text-primary" style="font-size: 3rem;"></i>
+                                <h2 class="fw-bold mt-2">Masuk ke Akun</h2>
                                 <p class="text-muted">Selamat datang kembali!</p>
                             </div>
                             <form id="loginForm">
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
                                     <div class="input-icon">
-                                        <span class="icon">📧</span>
+                                        <i class="bi bi-envelope-fill icon text-muted"></i>
                                         <input type="email" class="form-control" id="loginEmail" required placeholder="nama@email.com">
                                     </div>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Password</label>
                                     <div class="input-icon">
-                                        <span class="icon">🔒</span>
+                                        <i class="bi bi-lock-fill icon text-muted"></i>
                                         <input type="password" class="form-control" id="loginPassword" required placeholder="Masukkan password">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary w-100 mb-3">
+                                <button type="submit" class="btn btn-primary rounded-pill w-100 mb-3">
                                     Masuk 🚀
                                 </button>
                                 <div class="text-center">
                                     <span class="text-muted">Belum punya akun? </span>
-                                    <a href="#" onclick="showPage('register')" class="text-decoration-none">Daftar di sini</a>
+                                    <a href="#" onclick="showPage('register')" class="text-decoration-none fw-bold">Daftar di sini</a>
                                 </div>
                             </form>
                         </div>
@@ -145,45 +161,45 @@
                     <div class="col-md-6 col-lg-5">
                         <div class="auth-card">
                             <div class="text-center mb-4">
-                                <div class="auth-icon mb-3">✨</div>
-                                <h2 class="fw-bold">Buat Akun Baru</h2>
+                                <i class="bi bi-stars text-warning" style="font-size: 3rem;"></i>
+                                <h2 class="fw-bold mt-2">Buat Akun Baru</h2>
                                 <p class="text-muted">Bergabunglah bersama kami!</p>
                             </div>
                             <form id="registerForm">
                                 <div class="mb-3">
                                     <label class="form-label">Nama Lengkap</label>
                                     <div class="input-icon">
-                                        <span class="icon">👤</span>
+                                        <i class="bi bi-person-fill icon text-muted"></i>
                                         <input type="text" class="form-control" id="registerName" required placeholder="Nama Anda">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
                                     <div class="input-icon">
-                                        <span class="icon">📧</span>
+                                        <i class="bi bi-envelope-fill icon text-muted"></i>
                                         <input type="email" class="form-control" id="registerEmail" required placeholder="nama@email.com">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Password</label>
                                     <div class="input-icon">
-                                        <span class="icon">🔒</span>
+                                        <i class="bi bi-lock-fill icon text-muted"></i>
                                         <input type="password" class="form-control" id="registerPassword" required placeholder="Minimal 6 karakter">
                                     </div>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Konfirmasi Password</label>
                                     <div class="input-icon">
-                                        <span class="icon">🔒</span>
+                                        <i class="bi bi-lock-fill icon text-muted"></i>
                                         <input type="password" class="form-control" id="registerConfirmPassword" required placeholder="Ulangi password">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary w-100 mb-3">
+                                <button type="submit" class="btn btn-primary rounded-pill w-100 mb-3">
                                     Daftar Sekarang 🎉
                                 </button>
                                 <div class="text-center">
                                     <span class="text-muted">Sudah punya akun? </span>
-                                    <a href="#" onclick="showPage('login')" class="text-decoration-none">Masuk di sini</a>
+                                    <a href="#" onclick="showPage('login')" class="text-decoration-none fw-bold">Masuk di sini</a>
                                 </div>
                             </form>
                         </div>
@@ -227,11 +243,11 @@
                                 <input type="text" class="form-control create-post-input" placeholder="Apa yang Anda pikirkan? 💭" onclick="openCreatePostModal()">
                             </div>
                             <div class="d-flex gap-2">
-                                <button class="btn btn-light flex-fill" onclick="openCreatePostModal('image')">
-                                    📷 Foto
+                                <button class="btn btn-light flex-fill rounded-pill" onclick="openCreatePostModal('image')">
+                                    <i class="bi bi-image text-success me-1"></i> Foto
                                 </button>
-                                <button class="btn btn-light flex-fill" onclick="openCreatePostModal('text')">
-                                    📝 Status
+                                <button class="btn btn-light flex-fill rounded-pill" onclick="openCreatePostModal('text')">
+                                    <i class="bi bi-pencil-square text-primary me-1"></i> Status
                                 </button>
                             </div>
                         </div>
@@ -245,7 +261,7 @@
                     <!-- Right Sidebar -->
                     <div class="col-lg-3 d-none d-lg-block">
                         <div class="sidebar-card">
-                            <h6 class="mb-3">🌟 Trending</h6>
+                            <h6 class="mb-3 fw-bold"><i class="bi bi-fire text-danger"></i> Trending</h6>
                             <div class="trending-item">
                                 <p class="mb-1 fw-bold">#CloudSocial</p>
                                 <small class="text-muted">1,234 postingan</small>
@@ -276,16 +292,16 @@
                                 <div class="position-relative">
                                     <img src="" alt="Profile" class="profile-img-large" id="profileImg">
                                     <button class="btn btn-sm btn-light profile-img-edit" onclick="document.getElementById('profilePhotoInput').click()">
-                                        📷
+                                        <i class="bi bi-camera-fill"></i>
                                     </button>
                                     <input type="file" id="profilePhotoInput" accept="image/*" style="display: none;" onchange="uploadProfilePhoto(event)">
                                 </div>
                                 <div class="profile-details">
-                                    <h3 class="mb-1" id="profileName">User Name</h3>
+                                    <h3 class="mb-1 fw-bold" id="profileName">User Name</h3>
                                     <p class="text-muted mb-3" id="profileEmail">user@email.com</p>
                                     <p class="mb-3" id="profileBio">Belum ada bio</p>
-                                    <button class="btn btn-outline-primary" onclick="openEditProfileModal()">
-                                        ✏️ Edit Profil
+                                    <button class="btn btn-outline-primary rounded-pill px-4" onclick="openEditProfileModal()">
+                                        <i class="bi bi-pencil-fill me-1"></i> Edit Profil
                                     </button>
                                 </div>
                             </div>
@@ -293,7 +309,7 @@
 
                         <!-- Profile Posts -->
                         <div class="profile-tabs mb-4">
-                            <h5>📝 Postingan Saya</h5>
+                            <h5 class="fw-bold"><i class="bi bi-card-text me-2"></i>Postingan Saya</h5>
                         </div>
                         <div id="profilePostsContainer">
                             <!-- User's posts will be displayed here -->
@@ -308,22 +324,24 @@
     <div class="modal fade" id="createPostModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Buat Postingan</h5>
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Buat Postingan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="createPostForm">
                         <div class="mb-3">
-                            <textarea class="form-control" id="postContent" rows="4" placeholder="Apa yang ingin Anda bagikan? ✨" required></textarea>
+                            <textarea class="form-control border-0" style="resize: none; font-size: 1.2rem;" id="postContent" rows="4" placeholder="Apa yang ingin Anda bagikan? ✨" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Tambah Foto (Opsional)</label>
-                            <input type="file" class="form-control" id="postImage" accept="image/*">
+                            <label class="btn btn-light rounded-pill px-3">
+                                <i class="bi bi-image text-success me-1"></i> Tambah Foto
+                                <input type="file" class="d-none" id="postImage" accept="image/*">
+                            </label>
                             <div id="imagePreview" class="mt-3"></div>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">
-                            🚀 Posting
+                        <button type="submit" class="btn btn-primary rounded-pill w-100 fw-bold">
+                            Posting
                         </button>
                     </form>
                 </div>
@@ -335,22 +353,22 @@
     <div class="modal fade" id="editProfileModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Profil</h5>
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Edit Profil</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="editProfileForm">
                         <div class="mb-3">
-                            <label class="form-label">Nama</label>
+                            <label class="form-label text-muted small">Nama</label>
                             <input type="text" class="form-control" id="editName" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Bio</label>
+                            <label class="form-label text-muted small">Bio</label>
                             <textarea class="form-control" id="editBio" rows="3" placeholder="Ceritakan tentang diri Anda..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">
-                            💾 Simpan Perubahan
+                        <button type="submit" class="btn btn-primary rounded-pill w-100 fw-bold">
+                            Simpan Perubahan
                         </button>
                     </form>
                 </div>
@@ -361,4 +379,4 @@
     <script src="assets/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
-</html>
+</html> 
